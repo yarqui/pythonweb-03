@@ -9,7 +9,7 @@ import json
 
 DATA_FILE = "storage/data.json"
 # Set up Jinja2 template environment
-env = Environment(loader=FileSystemLoader("."))
+env = Environment(loader=FileSystemLoader("templates"))
 
 
 class WebHandler(BaseHTTPRequestHandler):
@@ -51,7 +51,7 @@ class WebHandler(BaseHTTPRequestHandler):
 
     def send_html_file(self, filename, status=200):
         try:
-            with open(filename, "rb") as f:
+            with open(f"templates/{filename}", "rb") as f:
                 self.send_response(status)
                 self.send_header("Content-type", "text/html")
                 self.end_headers()
